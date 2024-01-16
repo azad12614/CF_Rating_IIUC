@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IIUC - CF Rating List</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+    </style>
+  </head>
+  <body class="bg-dark">
+    <nav class="navbar bg-primary bg-gradient fixed-top text-white">
+      <div class="container-fluid">
+        <div class="m-auto text-center">
+          <span class="h1 text-dark">IIUC - CF Rating List</span><br />
+          <span class="h5">Made By Azad</span>
+        </div>
+      </div>
+    </nav>
+    <div style="margin: 10px; margin-top: 100px; display: flex;">
+      <table class="table table-striped" style="max-width: 10px;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+          </tr>
+        </thead>
+        <tbody id="body0"></tbody>
+      </table>
+      <table class="table table-striped table-hover table-border" id="myTable">
+        <thead>
+          <tr>
+            <th scope="col" onclick="sortTable(0)">No.</th>
+            <th scope="col" onclick="sortTable(1)">Handle</th>
+            <th scope="col" onclick="sortTable(2)">Name</th>
+            <th scope="col" onclick="sortTable(3)">Max. Rating</th>
+            <th scope="col" onclick="sortTable(4)">Max. Rank</th>
+            <th scope="col" onclick="sortTable(5)">Rating</th>
+            <th scope="col" onclick="sortTable(6)">Rank</th>
+          </tr>
+        </thead>
+        <tbody id="body"></tbody>
+      </table>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
