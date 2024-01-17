@@ -10,7 +10,7 @@ fetch(
     let Table = "";
     let i = 1;
     list.result.map((coder) => {
-      if (coder.organization == "International Islamic University Chittagong") {
+      if (coder.organization == "International Islamic University Chittagong" || coder.organization == "IIUC" || coder.organization == "Internation islamic university chittagong" || coder.organization == "International Islamic University Chittagong,71") {
         Table0 += `<tr><td scope="row">${i}</th></tr>`;
 
         Table += `<tr>
