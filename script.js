@@ -1,6 +1,12 @@
+function displayLoader() {
+  const loader = document.getElementById("loader");
+  loader.style.visibility = "visible";
+  //loader.style.border = "black";
+}
+
 function hideLoader() {
   const loader = document.getElementById("loader");
-  loader.style.display = "none";
+  loader.style.visibility = "collapse";
 }
 
 fetch("https://codeforces.com/api/user.ratedList")
@@ -15,7 +21,8 @@ fetch("https://codeforces.com/api/user.ratedList")
       if (
         coder.organization == "IIUC" ||
         coder.organization == "Internation islamic university chittagong" ||
-        coder.organization == "International Islamic University Chittagong,71" ||
+        coder.organization ==
+          "International Islamic University Chittagong,71" ||
         coder.organization == "International Islamic University Chittagong"
       ) {
         Table0 += `<tr><td scope="row">${i}</th></tr>`;
@@ -33,11 +40,12 @@ fetch("https://codeforces.com/api/user.ratedList")
       }
     });
     document.getElementById("body0").innerHTML = Table0;
-    document.getElementById("body").innerHTML = Table;
+    document.getElementById("body1").innerHTML = Table;
     hideLoader();
   });
 
 function sortTable(n) {
+  displayLoader();
   var table,
     rows,
     switching,
@@ -114,4 +122,5 @@ function sortTable(n) {
       }
     }
   }
+  setTimeout(hideLoader(), 2000);
 }
