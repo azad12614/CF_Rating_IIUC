@@ -1,16 +1,23 @@
-fetch(
-  "https://codeforces.com/api/user.ratedList?activeOnly=true&includeRetired=true"
-)
+function hideLoader() {
+  const loader = document.getElementById("loader");
+  loader.style.display = "none";
+}
+
+fetch("https://codeforces.com/api/user.ratedList")
   .then((data) => {
     return data.json();
   })
   .then((list) => {
-    console.log(list.result[0]);
     let Table0 = "";
     let Table = "";
     let i = 1;
     list.result.map((coder) => {
-      if (coder.organization == "International Islamic University Chittagong" || coder.organization == "IIUC" || coder.organization == "Internation islamic university chittagong" || coder.organization == "International Islamic University Chittagong,71") {
+      if (
+        coder.organization == "IIUC" ||
+        coder.organization == "Internation islamic university chittagong" ||
+        coder.organization == "International Islamic University Chittagong,71" ||
+        coder.organization == "International Islamic University Chittagong"
+      ) {
         Table0 += `<tr><td scope="row">${i}</th></tr>`;
 
         Table += `<tr>
@@ -27,6 +34,7 @@ fetch(
     });
     document.getElementById("body0").innerHTML = Table0;
     document.getElementById("body").innerHTML = Table;
+    hideLoader();
   });
 
 function sortTable(n) {
@@ -60,7 +68,7 @@ function sortTable(n) {
       y = rows[i + 1].getElementsByTagName("TD")[n];
       /*check if the two rows should switch place,
         based on the direction, asc or desc:*/
-      if (n == 0 || n == 3) {
+      if (n == 0 || n == 3 || n == 5) {
         if (dir == "asc") {
           if (Number(x.innerHTML) > Number(y.innerHTML)) {
             //if so, mark as a switch and break the loop:

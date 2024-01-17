@@ -11,6 +11,29 @@
       crossorigin="anonymous"
     />
     <style>
+      /* Loader Styles */
+      .loader {
+        border: 8px solid rgba(255, 255, 255, 0.3);
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        animation: spin 1s linear infinite;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -20px;
+        margin-top: -20px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     </style>
   </head>
   <body class="bg-dark">
@@ -22,8 +45,8 @@
         </div>
       </div>
     </nav>
-    <div style="margin: 10px; margin-top: 100px; display: flex;">
-      <table class="table table-striped" style="max-width: 10px;">
+    <div style="margin: 10px; margin-top: 100px; display: flex">
+      <table class="table table-striped" style="max-width: 10px">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -46,6 +69,7 @@
         <tbody id="body"></tbody>
       </table>
     </div>
+    <div id="loader" class="loader"></div>
     <script src="script.js"></script>
   </body>
 </html>
