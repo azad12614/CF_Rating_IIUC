@@ -9,6 +9,24 @@ function hideLoader() {
   loader.style.visibility = "collapse";
 }
 
+function fetching(handle) {
+  let Ratings = ["0", "0", "0", "0", "0", "0", "0", "0"];
+  fetch(`https://codeforces.com/api/user.status?handle=${handle}`)
+    .then((data) => {
+      return data.json();
+    })
+    .then((list1) => {
+      list1.result.map((problem) => {
+        if (problem.verdict == "OK" && problem.problem.rating <= 1500) {
+          let Rating = problem.problem.rating;
+          Rating = (Rating - 800) / 100;
+          Ratings[Rating] = Number(Ratings[Rating]) + 1;
+        }
+      });
+    });
+  return Ratings;
+}
+
 fetch("https://codeforces.com/api/user.ratedList")
   .then((data) => {
     return data.json();
@@ -22,10 +40,15 @@ fetch("https://codeforces.com/api/user.ratedList")
         coder.organization == "IIUC" ||
         coder.organization == "Internation islamic university chittagong" ||
         coder.organization ==
-          "International Islamic University Chittagong,71" ||
+        "International Islamic University Chittagong,71" ||
         coder.organization == "International Islamic University Chittagong"
       ) {
-        Table0 += `<tr><td scope="row">${i}</th></tr>`;
+        let Ratings = ["0", "0", "0", "0", "0", "0", "0", "0"];
+        Ratings = fetching(coder.handle);
+
+        console.log(Ratings);
+
+        Table0 += `<tr><td scope="row" style="padding: 10px;">${i}</th></tr>`;
 
         Table += `<tr>
         <td scope="row">${i}</th>
@@ -35,6 +58,14 @@ fetch("https://codeforces.com/api/user.ratedList")
         <td>${coder.maxRank}</td>
         <td>${coder.rating}</td>
         <td>${coder.rank}</td>
+        <td>${Ratings[0]}</td>
+        <td>${Ratings[1]}</td>
+        <td>${Ratings[2]}</td>
+        <td>${Ratings[3]}</td>
+        <td>${Ratings[4]}</td>
+        <td>${Ratings[5]}</td>
+        <td>${Ratings[6]}</td>
+        <td>${Ratings[7]}</td>
         </tr>`;
         i = i + 1;
       }
